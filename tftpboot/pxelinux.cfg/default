@@ -1,0 +1,137 @@
+MENU BACKGROUND pxelinux.cfg/logo1.png
+UI pxelinux.cfg/vesamenu.c32
+ 
+#default menu.c32
+ 
+menu title PXE Network Boot Menu
+prompt 1
+timeout 1200
+ 
+label Boot from first hard disk
+localboot 0x80
+ 
+############### OS Ubuntu ########
+menu begin
+menu title Ubuntu
+ 
+label ..
+menu exit
+ 
+LABEL Ubuntu 14.04 x64
+kernel Ubuntu/Desktop/amd64/vmlinuz.efi
+append boot=casper netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/ubuntu/amd64 initrd=Ubuntu/Desktop/amd64/initrd.lz
+
+LABEL Ubuntu 14.04 i386
+kernel Ubuntu/Desktop/i386/vmlinuz
+append boot=casper netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/ubuntu/i386 initrd=Ubuntu/Desktop/i386/initrd.lz
+
+LABEL Ubuntu Server 14.04 x64
+kernel Ubuntu/Server/14.04/amd64/linux
+append vga=normal initrd=Ubuntu/Server/14.04/amd64/initrd.gz  --
+menu end
+
+########################XUBUNTU #################################
+menu begin
+menu title Xubuntu
+ 
+label ..
+menu exit
+ 
+LABEL Xubuntu 14.04 x64
+kernel xubuntu/amd64/vmlinuz.efi
+append boot=casper netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/xubuntu/14.04/amd64 initrd=xubuntu/amd64/initrd.lz
+
+LABEL Xubuntu 14.10 x64
+menu end
+
+########################OS OpenSuSe###############################
+menu begin
+menu title OpenSuse 13.1 
+label ..
+menu exit
+
+LABEL OpenSuse 13.1 x86
+kernel OpenSuSE/OpenSuse13.1x86/linux
+append initrd=OpenSuSE/OpenSuse13.1x86/initrd splash=silent vga=0x314 showopts install=http://download.opensuse.org/factory/repo/oss/
+
+LABEL OpenSuse 13.1 x64
+kernel OpenSuSE/OpenSuse13.1x64/linux64  
+append initrd=OpenSuSE/OpenSuse13.1x64/initrd64 splash=silent vga=0x314 showopts install=http://download.opensuse.org/factory/repo/oss/ 
+
+menu end
+
+
+########################################################################
+
+############################LinuxMint####################################################################################
+menu begin
+menu title Linux Mint 17.1(Rebecca)
+label ..
+menu exit
+
+LABEL Linux_Mint_17_Cinnamon 
+kernel linuxmint/cinnamon/vmlinuz
+append  boot=casper netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/cinnamon initrd=linuxmint/cinnamon/initrd.lz nosplash --
+
+LABEL Linux_Mint_17_Mate
+kernel linuxmint/mate/casper/vmlinuz
+append  boot=casper netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/xfce initrd=linuxmint/xfce/casper/initrd.lz nosplash --
+
+
+LABEL Linux_Mint_17_Xfce
+kernel linuxmint/xfce/casper/vmlinuz
+append  boot=casper netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/xfce initrd=linuxmint/xfce/casper/initrd.lz nosplash --
+menu end
+###################################################################################################################################
+############################Automatic install############################################################################
+menu begin
+menu title Automatic install Ubuntu & Xubuntu Desktop 
+label ..
+
+LABEL Ubuntu Desktop 14.04 Trusty Tahr x86_64
+kernel autoinstall/14.04/linux
+append initrd=xubuntu/14.04/initrd.gz locale=en_US.UTF-8 console-keymaps-at/keymap=us console-setup/ask_detect=false keyboard-configuration/layout="English (US)" keyboard-configuration/layoutcode=us netcfg/use_autoconfig=true hostname="uaxxxxx" preseed/url=http://10.100$
+
+LABEL Ubuntu Desktop 14.10 Utopic Unicorn x86_64
+kernel autoinstall/14.10/linux
+append initrd=autoinstall/14.10/initrd.gz locale=en_US.UTF-8 console-keymaps-at/keymap=us console-setup/ask_detect=false keyboard-configuration/layout="English (US)" keyboard-configuration/layoutcode=us netcfg/use_autoconfig=true hostname="uaxxxxx" preseed/url=http://10.100$
+
+LABEL Xubuntu Desktop 14.04 Trusty Tahr x86_64
+kernel autoinstall/14.04/linux
+append initrd=autoinstallu/14.04/initrd.gz locale=en_US.UTF-8 console-keymaps-at/keymap=us console-setup/ask_detect=false keyboard-configuration/layout="English (US)" keyboard-configuration/layoutcode=us netcfg/use_autoconfig=true hostname="uaxxxxx" preseed/url=http://10.100$
+
+LABEL Xubuntu Desktop 14.10 Utopic Unicorn x86_64
+kernel autoinstall/14.10/linux
+append initrd=autoinstall/14.10/initrd.gz locale=en_US.UTF-8 console-keymaps-at/keymap=us console-setup/ask_detect=false keyboard-configuration/layout="English (US)" keyboard-configuration/layoutcode=us netcfg/use_autoconfig=true hostname="uaxxxxx" preseed/url=http://10.100$
+menu end
+
+############################Utilities####################################################################################
+
+menu begin
+menu title Utilities
+label ..
+menu exit
+
+LABEL memtest86+
+kernel memtest/memtest86
+
+LABEL Clonezilla
+kernel rescuecd/clonzilla/live/vmlinuz
+append  boot=live live-config noprompt noswap nomodeset nolocales/nosplash edd=on vga=788 ocs_live_run="ocs-live-general" ocs_live_extra_param="" ocs_live_keymap="" ocs_live_bash="no" ocs_lang="" fetch=tftp://10.100.131.14/rescuecd/clonzilla/live/filesystem.squashfs initrd=rescuecd/clonzilla/live/initrd.img
+
+LABEL DBAN Boot and Nuke
+KERNEL utilities/dban.bzi
+APPEND nuke="dwipe" silent floppy=0,16,cmos
+TEXT HELP
+ Warning - This will erase your hard drive
+ENDTEXT
+
+
+LABEL Gparted LiveCD 0.19.1-1
+KERNEL utilities/gparted/vmlinuz
+APPEND root=/dev/nfs boot=live netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/gparted nitrd=utilities/gparted/live/initrd.img nosplash --
+
+
+menu end
+
+###################################################################################################################################

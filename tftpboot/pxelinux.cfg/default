@@ -19,11 +19,11 @@ menu exit
  
 LABEL Ubuntu 14.04 x64
 kernel Ubuntu/Desktop/amd64/vmlinuz.efi
-append boot=casper netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/ubuntu/amd64 initrd=Ubuntu/Desktop/amd64/initrd.lz
+append boot=casper netboot=nfs nfsroot=ip_nfs_server:/var/ftp/nfs/ubuntu/amd64 initrd=Ubuntu/Desktop/amd64/initrd.lz
 
 LABEL Ubuntu 14.04 i386
 kernel Ubuntu/Desktop/i386/vmlinuz
-append boot=casper netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/ubuntu/i386 initrd=Ubuntu/Desktop/i386/initrd.lz
+append boot=casper netboot=nfs nfsroot=ip_nfs_server:/var/ftp/nfs/ubuntu/i386 initrd=Ubuntu/Desktop/i386/initrd.lz
 
 LABEL Ubuntu Server 14.04 x64
 kernel Ubuntu/Server/14.04/amd64/linux
@@ -39,7 +39,7 @@ menu exit
  
 LABEL Xubuntu 14.04 x64
 kernel xubuntu/amd64/vmlinuz.efi
-append boot=casper netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/xubuntu/14.04/amd64 initrd=xubuntu/amd64/initrd.lz
+append boot=casper netboot=nfs nfsroot=ip_nfs_server:/var/ftp/nfs/xubuntu/14.04/amd64 initrd=xubuntu/amd64/initrd.lz
 
 LABEL Xubuntu 14.10 x64
 menu end
@@ -63,26 +63,6 @@ menu end
 
 ########################################################################
 
-############################LinuxMint####################################################################################
-menu begin
-menu title Linux Mint 17.1(Rebecca)
-label ..
-menu exit
-
-LABEL Linux_Mint_17_Cinnamon 
-kernel linuxmint/cinnamon/vmlinuz
-append  boot=casper netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/cinnamon initrd=linuxmint/cinnamon/initrd.lz nosplash --
-
-LABEL Linux_Mint_17_Mate
-kernel linuxmint/mate/casper/vmlinuz
-append  boot=casper netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/xfce initrd=linuxmint/xfce/casper/initrd.lz nosplash --
-
-
-LABEL Linux_Mint_17_Xfce
-kernel linuxmint/xfce/casper/vmlinuz
-append  boot=casper netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/xfce initrd=linuxmint/xfce/casper/initrd.lz nosplash --
-menu end
-###################################################################################################################################
 ############################Automatic install############################################################################
 menu begin
 menu title Automatic install Ubuntu & Xubuntu Desktop 
@@ -90,19 +70,19 @@ label ..
 
 LABEL Ubuntu Desktop 14.04 Trusty Tahr x86_64
 kernel autoinstall/14.04/linux
-append initrd=xubuntu/14.04/initrd.gz locale=en_US.UTF-8 console-keymaps-at/keymap=us console-setup/ask_detect=false keyboard-configuration/layout="English (US)" keyboard-configuration/layoutcode=us netcfg/use_autoconfig=true hostname="uaxxxxx" preseed/url=http://10.100$
+append initrd=xubuntu/14.04/initrd.gz locale=en_US.UTF-8 console-keymaps-at/keymap=us console-setup/ask_detect=false keyboard-configuration/layout="English (US)" keyboard-configuration/layoutcode=us netcfg/use_autoconfig=true hostname="xxxxx" preseed/url=http://www.example.com/tftboot/preseed/preseedX.cfg
 
 LABEL Ubuntu Desktop 14.10 Utopic Unicorn x86_64
 kernel autoinstall/14.10/linux
-append initrd=autoinstall/14.10/initrd.gz locale=en_US.UTF-8 console-keymaps-at/keymap=us console-setup/ask_detect=false keyboard-configuration/layout="English (US)" keyboard-configuration/layoutcode=us netcfg/use_autoconfig=true hostname="uaxxxxx" preseed/url=http://10.100$
+append initrd=autoinstall/14.10/initrd.gz locale=en_US.UTF-8 console-keymaps-at/keymap=us console-setup/ask_detect=false keyboard-configuration/layout="English (US)" keyboard-configuration/layoutcode=us netcfg/use_autoconfig=true hostname="xxxxx" preseed/url=http://www.example.com/tftboot/preseed/preseedU.cfg
 
 LABEL Xubuntu Desktop 14.04 Trusty Tahr x86_64
 kernel autoinstall/14.04/linux
-append initrd=autoinstallu/14.04/initrd.gz locale=en_US.UTF-8 console-keymaps-at/keymap=us console-setup/ask_detect=false keyboard-configuration/layout="English (US)" keyboard-configuration/layoutcode=us netcfg/use_autoconfig=true hostname="uaxxxxx" preseed/url=http://10.100$
+append initrd=autoinstallu/14.04/initrd.gz locale=en_US.UTF-8 console-keymaps-at/keymap=us console-setup/ask_detect=false keyboard-configuration/layout="English (US)" keyboard-configuration/layoutcode=us netcfg/use_autoconfig=true hostname="xxxxx" preseed/url=http://www.example.com/tftboot/preseed/preseedX.cfg
 
 LABEL Xubuntu Desktop 14.10 Utopic Unicorn x86_64
 kernel autoinstall/14.10/linux
-append initrd=autoinstall/14.10/initrd.gz locale=en_US.UTF-8 console-keymaps-at/keymap=us console-setup/ask_detect=false keyboard-configuration/layout="English (US)" keyboard-configuration/layoutcode=us netcfg/use_autoconfig=true hostname="uaxxxxx" preseed/url=http://10.100$
+append initrd=autoinstall/14.10/initrd.gz locale=en_US.UTF-8 console-keymaps-at/keymap=us console-setup/ask_detect=false keyboard-configuration/layout="English (US)" keyboard-configuration/layoutcode=us netcfg/use_autoconfig=true hostname="xxxxx" preseed/url=http://www.example.com/tftboot/preseed/preseedX.cfg
 menu end
 
 ############################Utilities####################################################################################
@@ -129,7 +109,7 @@ ENDTEXT
 
 LABEL Gparted LiveCD 0.19.1-1
 KERNEL utilities/gparted/vmlinuz
-APPEND root=/dev/nfs boot=live netboot=nfs nfsroot=10.100.131.14:/var/ftp/nfs/gparted nitrd=utilities/gparted/live/initrd.img nosplash --
+APPEND root=/dev/nfs boot=live netboot=nfs nfsroot=ip_nfs_server:/var/ftp/nfs/gparted nitrd=utilities/gparted/live/initrd.img nosplash --
 
 
 menu end

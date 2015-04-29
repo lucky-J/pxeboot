@@ -1,6 +1,6 @@
 #!/bin/bash
 #Setup hostname. It's need for inventory
-echo "Enter PC inventory number. For example 'ua00000'. U can find it on your PC."
+echo "Enter PC inventory number. For example '00000'. U can find it on your PC."
 echo -n "Inventory number is:  "
 read inv
 hostname  $inv
@@ -15,7 +15,7 @@ echo "ff02::2 ip6-allrouters" >> /etc/hosts
 #make variables for installing
 path=/install/
 folder=temp
-url=http://10.100.131.14/tftboot/packets/fusioninventory-agent/
+url=http://www.example.com/tftboot/packets/fusioninventory-agent/
 file1=fusioninventory-agent
 file2=agent.cfg
 ext_packets="flashplugin-installer filezilla unrar unace zip rar google-chrome-stable skype ethtool sysstat htop git virtualbox-4.3"

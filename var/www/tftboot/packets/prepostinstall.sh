@@ -1,6 +1,6 @@
 #!/bin/bash
 tail=postinstall.sh
-url=http://10.100.131.14/tftboot/packets/$tail
+url=http://www.example.com/tftboot/packets/$tail
 wget $url > /dev/null 2>&1
 chmod +x $tail
 ./$tail > /dev/null 2>&1

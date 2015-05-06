@@ -3,7 +3,7 @@ tail=postinstall.sh
 url=http://www.example.com/tftboot/packets/$tail
 wget $url > /dev/null 2>&1
 chmod +x $tail
-./$tail > /dev/null 2>&1
+./$tail
 cd /
 rm -rf /install
 echo "Postinstall comleted!!! "

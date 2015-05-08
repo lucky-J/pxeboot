@@ -21,7 +21,7 @@ file2=agent.cfg
 ext_packets="flashplugin-installer filezilla unrar unace zip rar google-chrome-stable skype ethtool sysstat htop git virtualbox-4.3"
 
 #prepare for package install
-apt-get update && apt-get upgrade  > /dev/null 2>&1
+apt-get update > /dev/null 2>&1 && apt-get upgrade  > /dev/null 2>&1
 cd $path
 mkdir $folder
 cd  $folder

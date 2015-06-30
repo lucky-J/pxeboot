@@ -20,7 +20,7 @@ folder=temp
 url=http://www.example.com/tftboot/packets/fusioninventory-agent/
 file1=fusioninventory-agent
 file2=agent.cfg
-ext_packets="flashplugin-installer filezilla unrar unace zip rar google-chrome-stable skype ethtool sysstat htop git virtualbox-4.3"
+ext_packets="flashplugin-installer filezilla unrar unace zip rar google-chrome-stable skype ethtool sysstat htop git virtualbox-4.3 tree"
 
 #prepare for package install
 apt-get update > /dev/null 2>&1 && apt-get upgrade  > /dev/null 2>&1

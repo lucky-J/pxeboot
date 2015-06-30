@@ -4,6 +4,8 @@ echo "Enter PC inventory number. For example '00000'. U can find it on your PC."
 echo -n "Inventory number is:  "
 read inv
 hostname  $inv
+>/etc/hostname
+echo "$inv" > /etc/hostname
 >/etc/hosts
 echo "127.0.0.1    localhost" >> /etc/hosts
 echo "127.0.1.1    $inv" >> /etc/hosts
